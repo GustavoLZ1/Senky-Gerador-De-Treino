@@ -1,0 +1,57 @@
+/* Etapas */
+.passos { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 28px; padding: 0; list-style: none; }
+.passos li { display: flex; align-items: center; gap: 10px; color: var(--muted); font: 600 .95rem var(--font-display); }
+.passos li::after { content: ""; width: 28px; height: 1px; background: var(--line-strong); }
+.passos li:last-child::after { display: none; }
+.passos .n {
+  width: 26px; height: 26px; display: grid; place-items: center;
+  border: 1px solid var(--line-strong); border-radius: 50%; font-size: .8rem;
+}
+.passos li.feito { color: var(--text); }
+.passos li.feito .n { border-color: var(--accent); color: var(--accent); }
+.passos li[aria-current="step"] { color: var(--text); }
+.passos li[aria-current="step"] .n { background: var(--accent); border-color: var(--accent); color: #05101c; }
+
+.resumo { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-bottom: 18px; color: var(--muted); font-size: .95rem; }
+.resumo:empty { display: none; }
+.resumo b { color: var(--text); font-weight: 600; }
+
+.passo { animation: entrar .3s ease-out; }
+@keyframes entrar { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Cartões de seleção (objetivo, grupamento e músculo usam o mesmo formato) */
+.grade { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.grade.objetivos { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+.grade.musculos { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+
+.card { position: relative; display: block; cursor: pointer; }
+.card input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.card .face {
+  position: relative; display: grid; gap: 8px; align-content: start; height: 100%; padding: 22px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.grade.musculos .face { padding: 16px 18px; }
+.card:hover .face { border-color: var(--line-strong); transform: translateY(-2px); }
+.card input:checked + .face {
+  border-color: var(--c, var(--accent));
+  box-shadow: 0 0 0 1px var(--c, var(--accent)), 0 14px 40px -18px rgba(var(--c-rgb, var(--accent-rgb)), .85);
+}
+.card input:focus-visible + .face { outline: 2px solid #fff; outline-offset: 3px; }
+
+.face svg { width: 44px; height: 44px; fill: none; stroke: var(--c, var(--accent)); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.face strong { padding-right: 28px; font: 600 1.1rem var(--font-display); }
+.face .desc { color: var(--muted); font-size: .93rem; }
+.face .meta { margin-top: 6px; font-size: .85rem; opacity: .85; }
+
+.check { position: absolute; top: 16px; right: 16px; width: 22px; height: 22px; border: 1px solid var(--line-strong); border-radius: 6px; }
+.card input:checked + .face .check { background: var(--accent); border-color: var(--accent); }
+.card input:checked + .face .check::after {
+  content: ""; position: absolute; left: 7px; top: 3px; width: 6px; height: 11px;
+  border: solid #05101c; border-width: 0 2.5px 2.5px 0; transform: rotate(45deg);
+}
+
+.bloco { margin: 0 0 32px; }
+.bloco h2 { margin: 0 0 12px; font-size: 1.15rem; font-weight: 600; }
+.bloco .vazio { margin: 0; max-width: 60ch; color: var(--muted); font-size: .95rem; }

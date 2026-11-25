@@ -1,0 +1,21 @@
+.form-ex { display: grid; gap: 24px; max-width: 680px; }
+.form-ex .acoes { margin-top: 8px; }
+
+.linha { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 620px) { .linha { grid-template-columns: 1fr; } }
+
+.opcoes { display: flex; flex-wrap: wrap; gap: 10px; }
+.opcao {
+  display: inline-flex; align-items: center; gap: 10px; padding: 11px 14px;
+  border: 1px solid var(--line-strong); border-radius: 10px; background: #0c1322; cursor: pointer;
+}
+.opcao input { width: 18px; height: 18px; accent-color: var(--accent); }
+.opcao:has(input:checked) { border-color: var(--accent); }
+.opcao:has(input:focus-visible) { outline: 2px solid #fff; outline-offset: 2px; }
+
+.recentes { max-width: 680px; margin-top: 44px; }
+.recentes h2 { margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; }
+.recentes ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.recentes li { display: grid; gap: 2px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+.recentes li strong { font-weight: 600; }
+.recentes li span { color: var(--muted); font-size: .88rem; }

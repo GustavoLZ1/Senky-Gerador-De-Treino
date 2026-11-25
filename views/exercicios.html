@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cadastrar exercício</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/exercicios.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="logo"><i></i>SENKY</div>
+  <nav>
+    <a class="link" href="objetivo.html">Voltar para o treino</a>
+    <span class="usuario" id="usuario"></span>
+    <button class="btn ghost mini" id="sair" type="button">Sair</button>
+  </nav>
+</header>
+
+<main class="stage">
+
+  <h1>Cadastrar exercício</h1>
+  <p class="lead">O exercício entra no banco e passa a aparecer nos treinos dos esquemas que você marcar.</p>
+
+  <form class="form-ex" id="form-ex" novalidate>
+
+    <div class="campo">
+      <label for="nome">Nome do exercício</label>
+      <input id="nome" type="text" maxlength="100" autocomplete="off" required>
+      <small class="ajuda">Entre 3 e 100 caracteres. Exemplo: Encolhimento com halteres.</small>
+    </div>
+
+    <div class="linha">
+      <div class="campo">
+        <label for="grupamento">Grupamento</label>
+        <select id="grupamento" required>
+          <option value="">Carregando…</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="musculo">Músculo específico</label>
+        <select id="musculo" disabled>
+          <option value="">Escolha o grupamento primeiro</option>
+        </select>
+      </div>
+    </div>
+
+    <fieldset class="campo">
+      <legend>Esquemas em que o exercício entra</legend>
+      <div class="opcoes" id="esquemas"></div>
+    </fieldset>
+
+    <div class="acoes">
+      <button class="btn" id="salvar" type="submit" disabled>Cadastrar exercício</button>
+      <div class="status" id="status" role="status"></div>
+    </div>
+
+  </form>
+
+  <section class="recentes" id="recentes" hidden>
+    <h2>Cadastrados nesta sessão</h2>
+    <ul id="lista-recentes"></ul>
+  </section>
+
+</main>
+
+<script src="js/comum.js"></script>
+<script src="js/objetivos.js"></script>
+<script src="js/shell.js"></script>
+<script src="js/exercicios.js"></script>
+</body>
+</html>

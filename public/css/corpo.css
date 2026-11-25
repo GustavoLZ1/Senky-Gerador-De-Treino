@@ -1,0 +1,46 @@
+/* Ilustração do corpo na etapa de músculos */
+.bloco-corpo { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 28px; align-items: start; }
+.bloco-corpo .grade.musculos { grid-template-columns: 1fr; max-width: 360px; }
+
+.corpo-painel {
+  position: sticky; top: 16px; display: grid; gap: 14px; justify-items: center;
+  width: 320px; padding: 16px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+.corpo-figuras { display: flex; gap: 14px; }
+.corpo-fig { margin: 0; width: 132px; text-align: center; color: var(--muted); font-size: .8rem; }
+.corpo-figuras.uma .corpo-fig { width: 170px; }
+.corpo-fig figcaption { margin-top: 6px; }
+
+.corpo { display: block; width: 100%; height: auto; overflow: hidden; }
+.corpo .fundo path { fill: rgba(160, 185, 255, .05); stroke: rgba(160, 185, 255, .3); stroke-width: 1.2; stroke-linejoin: round; }
+.corpo .zona path {
+  fill: rgba(160, 185, 255, .08); stroke: rgba(160, 185, 255, .4); stroke-width: 1.2; stroke-linejoin: round;
+  cursor: pointer; transition: fill .25s, stroke .25s, filter .25s;
+}
+.corpo .zona.todos path { fill: rgba(var(--accent-rgb), .22); stroke: rgba(var(--accent-rgb), .75); }
+.corpo .zona.sel path { fill: rgba(var(--accent-rgb), .6); stroke: var(--accent); filter: drop-shadow(0 0 5px rgba(var(--accent-rgb), .8)); }
+.corpo .zona.foco path { fill: rgba(var(--accent-rgb), .72); stroke: #fff; animation: pulso 1.2s ease-in-out infinite; }
+@keyframes pulso { 50% { fill: rgba(var(--accent-rgb), .42); filter: drop-shadow(0 0 9px var(--accent)); } }
+
+/* Linha que varre o corpo uma vez quando a etapa abre */
+.corpo .varredura { fill: var(--accent); opacity: 0; animation: varrer 1.6s ease-out .15s 1; filter: drop-shadow(0 0 6px var(--accent)); }
+@keyframes varrer { 0% { opacity: .9; transform: translateY(0); } 100% { opacity: 0; transform: translateY(440px); } }
+
+.corpo-legenda { width: 100%; min-height: 6.6em; font-size: .9rem; }
+.corpo-legenda strong { display: block; margin-bottom: 4px; color: var(--accent); font: 600 1rem var(--font-display); }
+.corpo-legenda p { margin: 0; color: var(--muted); }
+
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
+@media (max-width: 860px) {
+  .bloco-corpo { grid-template-columns: 1fr; }
+  .bloco-corpo .grade.musculos { grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); max-width: none; }
+  .corpo-painel { order: -1; position: static; width: 100%; }
+  .corpo-fig { width: 104px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .corpo .varredura { display: none; }
+  .corpo .zona.foco path { animation: none; }
+}

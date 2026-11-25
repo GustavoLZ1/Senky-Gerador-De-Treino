@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SENKY - Entrar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+<main class="login">
+
+  <section class="marca">
+    <div class="logo"><i></i>SENKY</div>
+    <svg class="pulso" viewBox="0 0 520 120" aria-hidden="true">
+      <path d="M0 70 H140 l22 -50 l32 100 l26 -80 l16 30 H520"/>
+    </svg>
+    <h1>Seu treino, montado para o seu objetivo.</h1>
+    <p class="lead">Escolha a meta e os músculos. Séries, repetições e descanso já vêm ajustados.</p>
+  </section>
+
+  <section class="painel" aria-label="Acesso">
+    <div class="cartao">
+
+      <div class="abas" role="tablist" aria-label="Acesso">
+        <button type="button" role="tab" id="aba-entrar" aria-selected="true" aria-controls="form-entrar">Entrar</button>
+        <button type="button" role="tab" id="aba-criar" aria-selected="false" aria-controls="form-criar" tabindex="-1">Criar conta</button>
+      </div>
+
+      <form class="form" id="form-entrar" role="tabpanel" aria-labelledby="aba-entrar" novalidate>
+        <div class="campo">
+          <label for="e-email">E-mail</label>
+          <input id="e-email" type="email" autocomplete="email" required>
+        </div>
+        <div class="campo">
+          <label for="e-senha">Senha</label>
+          <input id="e-senha" type="password" autocomplete="current-password" required>
+        </div>
+        <button class="btn" type="submit">Entrar</button>
+        <div class="status" id="status-entrar" role="status"></div>
+      </form>
+
+      <form class="form" id="form-criar" role="tabpanel" aria-labelledby="aba-criar" hidden novalidate>
+        <div class="campo">
+          <label for="c-nome">Nome completo</label>
+          <input id="c-nome" type="text" autocomplete="name" maxlength="100" required>
+        </div>
+        <div class="campo">
+          <label for="c-email">E-mail</label>
+          <input id="c-email" type="email" autocomplete="email" maxlength="100" required>
+        </div>
+        <div class="campo">
+          <label for="c-tel">Telefone com DDD</label>
+          <input id="c-tel" type="tel" inputmode="numeric" autocomplete="tel" placeholder="(34) 99999-9999" required>
+        </div>
+        <div class="campo">
+          <label for="c-senha">Senha</label>
+          <input id="c-senha" type="password" autocomplete="new-password" required>
+          <small class="ajuda">Mínimo de 8 caracteres.</small>
+        </div>
+        <div class="campo">
+          <label for="c-conf">Confirmar senha</label>
+          <input id="c-conf" type="password" autocomplete="new-password" required>
+        </div>
+        <button class="btn" type="submit">Criar conta</button>
+        <div class="status" id="status-criar" role="status"></div>
+      </form>
+
+    </div>
+  </section>
+
+</main>
+
+<script src="js/comum.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

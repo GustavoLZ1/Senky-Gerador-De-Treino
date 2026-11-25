@@ -1,0 +1,64 @@
+.cabeca { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.chip { padding: 8px 16px; border: 1px solid rgba(var(--accent-rgb), .5); border-radius: 999px; background: rgba(var(--accent-rgb), .08); font-size: .95rem; }
+.chip b { color: var(--accent); font-weight: 600; }
+.progresso { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 220px; max-width: 420px; color: var(--muted); font-size: .9rem; }
+.barra { flex: 1; height: 6px; overflow: hidden; border-radius: 999px; background: rgba(160, 185, 255, .14); }
+.barra i { display: block; width: 0; height: 100%; background: var(--accent); box-shadow: 0 0 12px rgba(var(--accent-rgb), .8); transition: width .4s ease; }
+
+.workout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(260px, 1fr); gap: 24px; align-items: start; }
+@media (max-width: 860px) { .workout { grid-template-columns: 1fr; } }
+
+/* Exercício atual */
+.ex {
+  position: relative; overflow: hidden; padding: clamp(24px, 4vw, 40px);
+  border: 1px solid var(--line); border-radius: 20px;
+  background: linear-gradient(180deg, var(--surface-2), var(--surface));
+}
+.ex::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--accent); box-shadow: 0 0 24px rgba(var(--accent-rgb), .8); }
+.ex .grupo { color: var(--accent); font: 600 .95rem var(--font-display); }
+.ex h1 { margin: .35em 0 1em; padding-right: 64px; font-size: clamp(1.8rem, 4.5vw, 2.8rem); }
+
+.dados { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 28px; }
+.dados div { padding: 16px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255, 255, 255, .02); }
+.dados b { display: block; font: 700 clamp(1.3rem, 3.2vw, 1.9rem) var(--font-display); }
+.dados span { color: var(--muted); font-size: .9rem; }
+@media (max-width: 480px) { .dados { grid-template-columns: 1fr; } }
+
+.selo {
+  position: absolute; top: 28px; right: 28px; width: 56px; height: 56px;
+  display: grid; place-items: center; border-radius: 50%; background: var(--accent);
+  opacity: 0; transform: scale(.4);
+}
+.selo svg { width: 28px; height: 28px; fill: none; stroke: #05101c; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Troca de exercício: sai (500 ms, igual ao tempo do script), depois o novo entra */
+.ex.sai { animation: sai .5s ease-in forwards; }
+.ex.sai .selo { animation: selo .5s ease-out forwards; }
+.ex.entra { animation: entra .45s ease-out; }
+@keyframes sai { to { opacity: 0; transform: translateX(-36px); } }
+@keyframes entra { from { opacity: 0; transform: translateX(36px); } to { opacity: 1; transform: none; } }
+@keyframes selo { 0% { opacity: 0; transform: scale(.4); } 40% { opacity: 1; transform: scale(1.1); } 100% { opacity: 1; transform: scale(1); } }
+
+/* Sequência lateral */
+.lista h2 { margin-bottom: 12px; font-size: 1.1rem; font-weight: 600; }
+.lista ol { position: relative; max-height: min(60vh, 520px); margin: 0; padding: 0; overflow: auto; list-style: none; }
+.lista li {
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px;
+  padding: 12px 14px; margin-bottom: 8px;
+  border: 1px solid var(--line); border-radius: 12px; background: var(--surface);
+}
+.lista .n { width: 28px; height: 28px; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; font-size: .85rem; }
+.lista .nome { display: grid; font-weight: 600; font-size: .95rem; }
+.lista .nome small { color: var(--muted); font-weight: 400; font-size: .8rem; }
+.lista .meta { color: var(--muted); font-size: .85rem; white-space: nowrap; }
+.lista li.atual { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.lista li.atual .n { background: var(--accent); border-color: var(--accent); color: #05101c; font-weight: 700; }
+.lista li.feito { opacity: .55; }
+.lista li.feito .n { border-color: var(--accent); color: var(--accent); }
+
+/* Treino concluído */
+.fim { display: grid; justify-items: center; gap: 12px; padding: 48px 0; text-align: center; }
+.fim svg { width: 84px; height: 84px; fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 0 12px rgba(var(--accent-rgb), .7)); }
+.fim svg path { stroke-dasharray: 40; stroke-dashoffset: 40; animation: tracar .6s ease-out .2s forwards; }
+@keyframes tracar { to { stroke-dashoffset: 0; } }
+.fim p { margin: 0 0 12px; max-width: 46ch; color: var(--muted); }
